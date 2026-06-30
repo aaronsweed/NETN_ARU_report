@@ -1,0 +1,293 @@
+---
+output: 
+    html_document:
+      fig_caption: true
+      css: custom_styles.css
+      includes: 
+        in_header: "header_manual.html" 
+        after_body: "footer.html"
+params:
+  network: NETN
+  Park: MIMA
+  state: MA
+  year: 2019
+  bcr: 28
+  BCRName: New England/Mid-Atlantic Coasts
+  BBSRegion: S30
+  minYear: 2006
+  maxYear: 2019
+---
+      
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+# load in packages
+library(magrittr)
+library(devtools)
+library(tidyverse)
+library(NCRNbirds)
+library(leaflet)
+library(cowplot)
+library(readxl)
+library(lubridate)
+library(plotly)
+library(knitr)
+library(kableExtra)
+library(formattable)
+library(RColorBrewer)
+library(sf)
+library(sp)
+library(tmap)
+library(spsurvey)
+
+#################################################################################################
+# load in network monitoring data and look-up tables
+#################################################################################################
+
+BirdData <- importNETNbirds("./Data/NETN") 
+tlu_GuildRatings <- read_excel("./Data/tlu_GuildRatings.xlsx")
+guild_tlu<-getGuilds(BirdData) %>% filter( BCI_Type == "Cent_Appal")%>% rename(Species_Guild = AOU_Code)
+ParkList<-NCRNbirds::getParkNames(BirdData, name.class="code")
+
+# import Partners in Flight designations per BCR
+
+PIFSppByBCR<- read.csv("./Data/PIF_Species_BCR.csv") %>% 
+  filter(BCR %in% params$bcr)
+
+# create vector of forested points for queries excluding grassland sites 
+
+forest.sites<-getVisits(BirdData[ParkList == params$Park], site="Forest") %>% select(Point_Name) %>% distinct() %>% pull()
+
+# derive raw relative abundance from NETN monitoring to add on modeled estimates
+
+sp_detects<- SumRelAbund(BirdData[ParkList == params$Park], band = 1:2, max= T) %>% # raw detection data created from SumRelAbund
+  add_column(variable = "Field Observation") %>% select(park= Admin_Unit_Code, Year,  AOU_Code, value= RelAbund, variable) 
+
+#################################################################################################
+# load and setup in MIMA Veg map to denote forest vs field habitats (and corresponding routes)
+#################################################################################################
+
+# Read in shapefiles from spatial data folder
+mima_bound<- st_read('./data/spatial/MIMA_bndry.shp') 
+mima_veg <- st_read('./data/spatial/MIMA_Veg.shp') %>%  st_cast("MULTIPOLYGON") # read in and convert to multipolygon
+
+# Check that the projections match; fix the one that doesn't match
+st_crs(mima_bound) == st_crs(mima_veg) # FALSE- projections don't match.
+
+# Simplify vegetation types for easier plotting
+unique(mima_veg$ANDER_NAME)
+
+dev <- c('Residential','Transportation, Communications, and Utilities')
+crop <- c('Cropland and Pasture','Other Agricultural Land')
+shrubland <- c('Shrub and Brush Rangeland')
+forest_up <- c('Deciduous Forest Land','Mixed Forest Land')
+forest_wet <- c('Forested Wetland')
+open_wet <- c('Nonforested wetland')
+water <- c('Lakes','Streams and Canals')
+unk <- 'Unclassified'
+
+# Create 2 fields in the veg attribute table: simp_veg, and fills
+mima_veg <- mima_veg %>% 
+  dplyr::mutate(simp_veg = case_when(ANDER_NAME %in% dev ~ 'Developed',
+                              ANDER_NAME %in% crop ~ 'Open field',
+                              ANDER_NAME %in% shrubland ~ 'Forest',
+                              ANDER_NAME %in% forest_up ~ 'Forest',
+                              ANDER_NAME %in% forest_wet ~ 'Forest',
+                              ANDER_NAME %in% open_wet ~ 'Open wetland',
+                              ANDER_NAME %in% water ~ 'Open water',
+                              ANDER_NAME %in% unk ~ 'Unclassified',
+                              TRUE ~ 'Unknown'),
+         fill_col = case_when(simp_veg == 'Developed' ~ '#D8D8D8',
+                              simp_veg == 'Open field' ~ '#f5f0b0',
+                              simp_veg == 'Shrublands' ~ '#F29839',
+                              simp_veg == 'Powerline ROW' ~ '#F9421D',
+                              simp_veg == 'Forest' ~ '#55785e',
+                              simp_veg == 'Open wetland' ~ '#c497d4',
+                              simp_veg == 'Open water' ~ '#AFD0F2',
+                              simp_veg == 'Unclassified' ~ '#ffffff'))
+# Creating list of simp_veg types and their fill colors for easier legend
+ 
+
+mima_veg <- st_transform(mima_veg, crs = 4326) %>% filter(simp_veg %in% "Forest" | simp_veg %in% "Open field") %>% select(geometry, simp_veg, fill_col)
+
+
+mima_veg_union<- mima_veg %>% 
+  group_by(simp_veg, fill_col) %>% 
+  summarize(geometry = st_combine(geometry))
+
+
+mapCols<-colorFactor(c('#55785e','#f5f0b0'), domain = mima_veg_union$simp_veg) # set map colors for habitat types
+```
+<img src="NETN_Birdlogo_100.jpg" alt="landbird logo" style="height:100px;width:100.8px;float:right;padding:0;margin:10px -15px 0 0;">
+
+# Overview 
+
+
+<div style="float:right;position:relative;top:10px;padding:5px 5px 5px 10px;margin:0px 5px 10px 5px">
+
+```{r Effmap, echo = FALSE,  fig.height=5.75, fig.width= 5.75, fig.align = 'left', warning= FALSE, comment=FALSE, message=FALSE,}
+
+
+NCRNbirds::mapEffort(BirdData[ParkList == params$Park], palette = "viridis", title = paste0("Total surveys since ",params$minYear)) %>% 
+  addPolygons(data= mima_veg_union, label = mima_veg_union$simp_veg, weight = 0, smoothFactor = 0.5,opacity = 1.0, fillOpacity = 0.5, fillColor = ~mapCols(simp_veg), group= "Habitat Type") %>% 
+  addLegend(data= mima_veg_union, "bottomright", pal = mapCols, values = ~simp_veg,
+    title = "Habitat Type",opacity = .5) %>% 
+  addLayersControl(overlayGroups = "Habitat Type", options = layersControlOptions(collapsed = FALSE))%>% hideGroup("Habitat Type")
+```
+<p class='capwrap'>
+
+Map of monitoring effort (no. surveys) at `r params$Park`'s 24 permanent forest and 6 grassland/open field sites between `r params$minYear` and `r params$maxYear`. You can click on the site to display its unique site identifier and the total number of species detected since `r params$minYear` when the Habitat Type layer (derived from Gawler et al. 2017) is not selected.</p>
+</div>
+
+Only data collected from these points has been included in this summary. Data summaries provided in this document are based on certified records but may be subject to change.
+
+\pagebreak
+
+# Bird Community metrics
+
+## Species Richness over time
+
+This graph shows the number of bird species detected during monitoring for each year. Note that this is not the total number of species in the park, as species may be present but not detected during monitoring.
+
+```{r richness, echo = TRUE, echo=FALSE, fig.height=6, fig.width= 10, fig.align = 'center'}
+NCRNbirds::richnessPlot(BirdData[ParkList == params$Park], band= 2, points = forest.sites,  plot_title = "")
+```
+
+Data are summarized across all distance bands and among both annual visits. The horizontal axis indicates the year, with the number of points monitored per visit in parenthesis. The vertical axis indicates the number of birds species detected during monitoring. Additional bird species were likely present at the points, but not detected.
+
+\pagebreak
+
+## Forest Avian Ecological Integrity Assessment
+
+This assessment consists of 13 guilds in three ecological integrity categories, with each guild being broadly categorized as “specialist” or “generalist.” A specialist is a species with a narrow range of habitat tolerances, or one that exhibits a low intrinsic rate of population growth. The presence of a variety of specialist guilds indicates a high-integrity habitat condition associated with large areas of mature forest, while a preponderance of generalist guilds indicates a low-integrity condition. The integrity categories are compositional (indicating species diversity), functional (highlighting ecological processes), and structural (related to the presence of important physical elements, like snags and a shrub layer). 
+
+```{r guilds, echo=FALSE,message=FALSE}
+library(magrittr)
+y <- NCRNbirds::BirdGuildSummary(BirdData[ParkList == params$Park], type= "NETN_Forest_BCI", points = forest.sites)[,c(-1,-3,-6)] %>% 
+  dplyr::filter(`Response Guild` != "TemperateMigrant" & `Response Guild` != "OpenGroundNester" & `Response Guild` != "ForestGeneralist")
+
+knitr::kable(y,
+            col.names= c("Integrity Element","Response Guild", "Percentage of species observed"), caption ="Proportional species richness at The Bluff- MIMA within each response guild 2007-2018. Data are summarized across all distance bands, visits, and years monitored.")
+#kableExtra::collapse_rows(x)
+```
+
+The above summary has not been updated to include ratings per response guild, yet. In the next version, ratings (Good, Caution, Significant Concern) will be added directly to each response guild summary table in addition to the ability to compare ratings between years or groups of years (e.g., 2007-2011 to 2014-2018). For now, the forest guild ratings are listed in Table 3.
+
+`r knitr::kable(tlu_GuildRatings, caption= "Forest Avian Ecological Integrity thresholds for 13 response guilds (based on O’Connell et al. 2000, and Glennon and Porter 2005). Percentages are proportional species richness.")`
+\pagebreak
+
+## Bird Community Index (BCI) over time
+
+Similar to Forest Avian Ecological Integrity Assessment above, the Bird Community Index (BCI- O'connell et al 1998, 2000) is designed to indicate the conservation status of the bird community in forested areas such as those in NETN parks. The BCI is calculated from the bird guild assessment above to indicate if the bird community has birds typical of forest habitats ("High Integrity") or has more generalist birds ("Low Integrity"). The benefit of the BCI is that is combines the information from the individual response guilds into one index.
+
+```{r BCI, echo=FALSE, fig.height=6, fig.width= 10, fig.align = 'center', message=FALSE}
+NCRNbirds::BCIPlot(BirdData[ParkList == params$Park], type= "NETN_Forest_BCI", points = forest.sites, plot_title = "", caption = FALSE)
+```
+
+Data are summarized across all distance bands and visits. The points on the graph denote the average (mean) BCI for points monitored during each year for the selected visits. The horizontal axis indicates the year, with the number of points monitored by visit in parenthesis. 
+
+
+\pagebreak
+
+# Relative Abundance over time
+
+The following plots show the relative abundance of birds over time. 
+
+## All species per point over time
+
+```{r detects,echo=FALSE, fig.height=6, fig.width= 10, fig.align = 'center', message=FALSE}
+NCRNbirds::detectsPlot(BirdData[ParkList == params$Park],  points = forest.sites, max=T, plot_title = "")
+```
+
+`r detectsCaption`
+
+**Number of species analyzed:** `r NCRNbirds::birdRichness(NETN, points= forest.sites)`
+
+\pagebreak
+
+## Biotic Integrity Element: Compositional
+
+The following plots show the relative abundance over time of the avian bird guilds used to evaluate forest ecological integrity. Note that if a species has *not* been observed for a particular guild, zeroes will be plotted over time and no species will be listed under the plot. 
+
+### Average Exotic species per point over time
+```{r ex,echo=FALSE, fig.height=6, fig.width= 10, fig.align = 'center', message=FALSE, results="asis"}
+library(magrittr)
+sp = NCRNbirds::getGuilds(BirdData[ParkList == params$Park]) %>% 
+  dplyr::filter(Response_Guild == "Exotic" & BCI_Type == "NETN_Forest_BCI") %>% dplyr::pull(AOU_Code)
+
+NCRNbirds::detectsPlot(BirdData[ParkList == params$Park],  points = forest.sites, max=T, plot_title = "", AOU=sp)
+
+```
+`r detectsCaption`
+
+**Exotic species analyzed:**
+`r NCRNbirds::getBirdNames(BirdData[ParkList == params$Park], names= sp)`
+\pagebreak
+
+### Average Resident species per point over time
+```{r re,echo=FALSE, fig.height=6, fig.width= 10, fig.align = 'center', message=FALSE, warning = FALSE}
+library(magrittr)
+sp = ObsSppGuildlist(BirdData[ParkList == params$Park], type= "NETN_Forest_BCI", guild= "Resident", style = "AOU")
+
+NCRNbirds::detectsPlot(BirdData[ParkList == params$Park],  points = forest.sites, max=T, plot_title = "", AOU=sp)
+```
+`r detectsCaption`
+
+**Resident species analyzed:**
+`r NCRNbirds::getBirdNames(BirdData[ParkList == params$Park], names= sp)`
+\pagebreak
+
+
+
+## Biotic Integrity Element:Structural
+
+### Average Interior Forest Obligate species per point over time
+```{r forob,echo=FALSE, fig.height=6, fig.width= 10, fig.align = 'center', message=FALSE,warning = FALSE}
+library(magrittr)
+sp = ObsSppGuildlist(BirdData[ParkList == params$Park], type= "NETN_Forest_BCI", guild= "InteriorForestObligate", style = "AOU")
+
+NCRNbirds::detectsPlot(NETN[ParkList == park],  points = forest.sites, max=T, plot_title = "", AOU=sp)
+```
+`r detectsCaption`
+
+**Interior Forest Obligate species analyzed:**
+`r NCRNbirds::getBirdNames(BirdData[ParkList == params$Park], names= sp)`
+\pagebreak
+
+### Average Ground Nester species per point over time
+```{r gronest,echo=FALSE, fig.height=6, fig.width= 10, fig.align = 'center', message=FALSE,warning = FALSE}
+library(magrittr)
+sp = ObsSppGuildlist(BirdData[ParkList == params$Park], type= "NETN_Forest_BCI", guild= "ForestGroundNester", style = "AOU")
+
+NCRNbirds::detectsPlot(BirdData[ParkList == params$Park],  points = forest.sites, max=T, plot_title = "", AOU=sp)
+```
+`r detectsCaption`
+
+**Ground Nester species analyzed:**
+`r NCRNbirds::getBirdNames(BirdData[ParkList == params$Park], names= sp)`
+\pagebreak
+
+### Average Shrub Nester species per point over time
+```{r shrub,echo=FALSE, fig.height=6, fig.width= 10, fig.align = 'center', message=FALSE, warning = FALSE}
+library(magrittr)
+sp = ObsSppGuildlist(BirdData[ParkList == params$Park], type= "NETN_Forest_BCI", guild= "ShrubNester", style = "AOU")
+
+NCRNbirds::detectsPlot(BirdData[ParkList == params$Park],  points = forest.sites, max=T, plot_title = "", AOU=sp)
+```
+`r detectsCaption`
+
+**Shrub Nester species analyzed:**
+`r NCRNbirds::getBirdNames(BirdData[ParkList == params$Park], names= sp)`
+\pagebreak
+
+### Average Canopy Nester species per point over time
+```{r canopy,echo=FALSE, fig.height=6, fig.width= 10, fig.align = 'center', message=FALSE, warning = FALSE}
+library(magrittr)
+sp = ObsSppGuildlist(BirdData[ParkList == params$Park], type= "NETN_Forest_BCI", guild= "CanopyNester", style = "AOU")
+  
+NCRNbirds::detectsPlot(BirdData[ParkList == params$Park],  points = forest.sites, max=T, plot_title = "", AOU=sp)
+```
+`r detectsCaption`
+
+**Canopy Nester species analyzed:**
+`r NCRNbirds::getBirdNames(BirdData[ParkList == params$Park], names= sp)`
+\pagebreak
