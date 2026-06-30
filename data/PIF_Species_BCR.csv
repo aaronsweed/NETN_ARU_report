@@ -1,0 +1,170 @@
+Common_Name,BCR,AOS 60,group,Regional Importance,Regional Concern,Regional Stewardship,Continental Importance,AOU_Code,Scientific_Name
+Northern Bobwhite,13,101,landbird,1,1,NA,NA,NOBO,Colinus virginianus
+Northern Bobwhite,28,101,landbird,1,1,NA,CBSD,NOBO,Colinus virginianus
+Northern Bobwhite,29,101,landbird,1,1,NA,CBSD,NOBO,Colinus virginianus
+Northern Bobwhite,30,101,landbird,1,1,NA,CBSD,NOBO,Colinus virginianus
+Ruffed Grouse,14,127,landbird,1,1,NA,NA,RUGR,Bonasa umbellus
+Ruffed Grouse,29,127,landbird,1,NA,NA,NA,RUGR,Bonasa umbellus
+Yellow-billed Cuckoo,28,217,landbird,1,1,NA,CBSD,YBCU,Coccyzus americanus
+Yellow-billed Cuckoo,29,217,landbird,1,1,NA,CBSD,YBCU,Coccyzus americanus
+Yellow-billed Cuckoo,30,217,landbird,1,1,NA,CBSD,YBCU,Coccyzus americanus
+Black-billed Cuckoo,13,221,landbird,1,1,NA,Watch List - Yel-D,BBCU,Coccyzus erythropthalmus
+Black-billed Cuckoo,14,221,landbird,1,1,NA,Watch List - Yel-D,BBCU,Coccyzus erythropthalmus
+Black-billed Cuckoo,28,221,landbird,1,1,NA,Watch List - Yel-D,BBCU,Coccyzus erythropthalmus
+Black-billed Cuckoo,29,221,landbird,1,1,NA,Watch List - Yel-D,BBCU,Coccyzus erythropthalmus
+Black-billed Cuckoo,30,221,landbird,1,1,NA,Watch List - Yel-D,BBCU,Coccyzus erythropthalmus
+Common Nighthawk,28,231,landbird,1,1,NA,CBSD,CONI,Chordeiles minor
+Chuck-will's-widow,28,240,landbird,1,1,NA,CBSD,CWWI,Antrostomus carolinensis
+Chuck-will's-widow,29,240,landbird,1,1,NA,CBSD,CWWI,Antrostomus carolinensis
+Eastern Whip-poor-will,13,246,landbird,1,1,NA,Watch List - Yel-D,EWPW,Antrostomus vociferus
+Eastern Whip-poor-will,14,246,landbird,1,1,NA,Watch List - Yel-D,EWPW,Antrostomus vociferus
+Eastern Whip-poor-will,28,246,landbird,1,1,NA,Watch List - Yel-D,EWPW,Antrostomus vociferus
+Eastern Whip-poor-will,29,246,landbird,1,1,NA,Watch List - Yel-D,EWPW,Antrostomus vociferus
+Eastern Whip-poor-will,30,246,landbird,1,1,NA,Watch List - Yel-D,EWPW,Antrostomus vociferus
+Chimney Swift,13,264,landbird,1,1,NA,Watch List - Yel-D,CHSW,Chaetura pelagica
+Chimney Swift,14,264,landbird,1,1,NA,Watch List - Yel-D,CHSW,Chaetura pelagica
+Chimney Swift,28,264,landbird,1,1,NA,Watch List - Yel-D,CHSW,Chaetura pelagica
+Chimney Swift,29,264,landbird,1,1,NA,Watch List - Yel-D,CHSW,Chaetura pelagica
+Chimney Swift,30,264,landbird,1,1,NA,Watch List - Yel-D,CHSW,Chaetura pelagica
+Northern Harrier,13,787,landbird,1,1,NA,NA,NOHA,Circus hudsonius
+Broad-winged Hawk,29,824,landbird,1,1,NA,NA,BWHA,Buteo platypterus
+Eastern Screech-Owl,28,837,landbird,1,1,NA,NA,EASO,Megascops asio
+Long-eared Owl,29,868,landbird,1,NA,NA,NA,LEOW,Asio otus
+Short-eared Owl,29,870,landbird,1,NA,NA,NA,SEOW,Asio flammeus
+Belted Kingfisher,13,911,landbird,1,1,NA,NA,BEKI,Megaceryle alcyon
+Belted Kingfisher,14,911,landbird,1,1,NA,NA,BEKI,Megaceryle alcyon
+Belted Kingfisher,28,911,landbird,1,1,NA,NA,BEKI,Megaceryle alcyon
+Belted Kingfisher,29,911,landbird,1,1,NA,NA,BEKI,Megaceryle alcyon
+Belted Kingfisher,30,911,landbird,1,1,NA,NA,BEKI,Megaceryle alcyon
+Red-headed Woodpecker,13,942,landbird,1,1,NA,Watch List - Yel-D,RHWO,Melanerpes erythrocephalus
+Black-backed Woodpecker,14,963,landbird,1,1,NA,NA,BBWO,Picoides arcticus
+Red-cockaded Woodpecker,28,968,landbird,1,1,NA,Watch List - Red,RCWO,Dryobates borealis
+Red-cockaded Woodpecker,29,968,landbird,1,1,NA,Watch List - Red,RCWO,Dryobates borealis
+Northern Flicker,13,981,landbird,1,1,NA,NA,NOFL,Colaptes auratus
+Northern Flicker,14,981,landbird,1,1,NA,NA,NOFL,Colaptes auratus
+Northern Flicker,28,981,landbird,1,1,NA,NA,NOFL,Colaptes auratus
+Northern Flicker,29,981,landbird,1,1,NA,NA,NOFL,Colaptes auratus
+Northern Flicker,30,981,landbird,1,1,NA,NA,NOFL,Colaptes auratus
+American Kestrel,13,1002,landbird,1,1,NA,NA,AMKE,Falco sparverius
+American Kestrel,29,1002,landbird,1,1,NA,NA,AMKE,Falco sparverius
+Peregrine Falcon,28,1010,landbird,1,1,NA,NA,PEFA,Falco peregrinus
+Eastern Kingbird,13,1282,landbird,1,1,NA,NA,EAKI,Tyrannus tyrannus
+Eastern Kingbird,29,1282,landbird,1,1,NA,NA,EAKI,Tyrannus tyrannus
+Eastern Kingbird,30,1282,landbird,1,1,NA,NA,EAKI,Tyrannus tyrannus
+Olive-sided Flycatcher,14,1295,landbird,1,1,NA,Watch List - Yel-D,OSFL,Contopus cooperi
+Eastern Wood-Pewee,13,1300,landbird,1,1,NA,NA,EAWP,Contopus virens
+Eastern Wood-Pewee,14,1300,landbird,1,1,NA,NA,EAWP,Contopus virens
+Eastern Wood-Pewee,28,1300,landbird,1,1,NA,NA,EAWP,Contopus virens
+Eastern Wood-Pewee,29,1300,landbird,1,1,NA,NA,EAWP,Contopus virens
+Yellow-bellied Flycatcher,14,1306,landbird,1,1,NA,NA,YBFL,Empidonax flaviventris
+Acadian Flycatcher,28,1307,landbird,1,1,1,NA,ACFL,Empidonax virescens
+Least Flycatcher,13,1311,landbird,1,1,NA,CBSD,LEFL,Empidonax minimus
+Least Flycatcher,14,1311,landbird,1,1,NA,CBSD,LEFL,Empidonax minimus
+Least Flycatcher,28,1311,landbird,1,1,NA,CBSD,LEFL,Empidonax minimus
+Loggerhead Shrike,13,1329,landbird,1,1,NA,NA,LOSH,Lanius ludovicianus
+Yellow-throated Vireo,14,1356,landbird,1,1,NA,NA,YTVI,Vireo flavifrons
+Bank Swallow,13,1417,landbird,1,1,NA,CBSD,BANS,Riparia riparia
+Tree Swallow,14,1418,landbird,1,1,NA,NA,TRES,Tachycineta bicolor
+Purple Martin,28,1431,landbird,1,1,NA,NA,PUMA,Progne subis
+Barn Swallow,13,1435,landbird,1,1,NA,NA,BARS,Hirundo rustica
+Barn Swallow,28,1435,landbird,1,1,NA,NA,BARS,Hirundo rustica
+Sedge Wren,29,1473,landbird,1,NA,NA,NA,SEWR,Cistothorus platensis
+Bewick's Wren,29,1476,landbird,1,NA,NA,NA,BEWR,Thryomanes bewickii
+Veery,13,1589,landbird,1,1,NA,NA,VEER,Catharus fuscescens
+Veery,14,1589,landbird,1,1,NA,NA,VEER,Catharus fuscescens
+Veery,30,1589,landbird,1,1,NA,NA,VEER,Catharus fuscescens
+Bicknell's Thrush,14,1591,landbird,1,1,1,Watch List - Red,BITH,Catharus bicknelli
+Wood Thrush,13,1594,landbird,1,1,NA,Watch List - Yel-D,WOTH,Hylocichla mustelina
+Wood Thrush,14,1594,landbird,1,1,NA,Watch List - Yel-D,WOTH,Hylocichla mustelina
+Wood Thrush,28,1594,landbird,1,1,1,Watch List - Yel-D,WOTH,Hylocichla mustelina
+Wood Thrush,29,1594,landbird,1,1,NA,Watch List - Yel-D,WOTH,Hylocichla mustelina
+Wood Thrush,30,1594,landbird,1,1,NA,Watch List - Yel-D,WOTH,Hylocichla mustelina
+Brown Thrasher,13,1632,landbird,1,1,NA,NA,BRTH,Toxostoma rufum
+Brown Thrasher,30,1632,landbird,1,1,NA,NA,BRTH,Toxostoma rufum
+Evening Grosbeak,13,1711,landbird,1,1,NA,Watch List - Yel-D,EVGR,Coccothraustes vespertinus
+Evening Grosbeak,14,1711,landbird,1,1,NA,Watch List - Yel-D,EVGR,Coccothraustes vespertinus
+Purple Finch,14,1761,landbird,1,1,NA,NA,PUFI,Haemorhous purpureus
+Bachman's Sparrow,28,1813,landbird,1,1,NA,Watch List - Red,BACS,Peucaea aestivalis
+Bachman's Sparrow,29,1813,landbird,1,1,NA,Watch List - Red,BACS,Peucaea aestivalis
+Grasshopper Sparrow,13,1814,landbird,1,1,NA,CBSD,GRSP,Ammodramus savannarum
+Grasshopper Sparrow,28,1814,landbird,1,1,NA,CBSD,GRSP,Ammodramus savannarum
+Grasshopper Sparrow,29,1814,landbird,1,1,NA,CBSD,GRSP,Ammodramus savannarum
+Grasshopper Sparrow,30,1814,landbird,1,1,NA,CBSD,GRSP,Ammodramus savannarum
+Chipping Sparrow,28,1822,landbird,1,1,NA,NA,CHSP,Spizella passerina
+Field Sparrow,13,1825,landbird,1,1,NA,CBSD,FISP,Spizella pusilla
+Field Sparrow,28,1825,landbird,1,1,NA,CBSD,FISP,Spizella pusilla
+Field Sparrow,29,1825,landbird,1,1,NA,CBSD,FISP,Spizella pusilla
+Field Sparrow,30,1825,landbird,1,1,NA,CBSD,FISP,Spizella pusilla
+Vesper Sparrow,13,1849,landbird,1,1,NA,NA,VESP,Pooecetes gramineus
+Seaside Sparrow,30,1851,landbird,1,1,NA,Watch List - Yel-R,SESP,Ammospiza maritima
+Saltmarsh Sparrow,14,1853,landbird,1,1,NA,Watch List - Red,SALS,Ammospiza caudacuta
+Saltmarsh Sparrow,30,1853,landbird,1,1,1,Watch List - Red,SALS,Ammospiza caudacuta
+Henslow's Sparrow,13,1855,landbird,1,1,NA,Watch List - Yel-D,HESP,Centronyx henslowii
+Henslow's Sparrow,28,1855,landbird,1,1,NA,Watch List - Yel-D,HESP,Centronyx henslowii
+Henslow's Sparrow,29,1855,landbird,1,NA,NA,NA,HESP,Centronyx henslowii
+Henslow's Sparrow,30,1855,landbird,1,NA,NA,NA,HESP,Centronyx henslowii
+Swamp Sparrow,30,1860,landbird,1,1,NA,NA,SWSP,Melospiza georgiana
+Eastern Towhee,28,1876,landbird,1,1,NA,NA,EATO,Pipilo erythrophthalmus
+Eastern Towhee,29,1876,landbird,1,1,NA,NA,EATO,Pipilo erythrophthalmus
+Eastern Towhee,30,1876,landbird,1,1,NA,NA,EATO,Pipilo erythrophthalmus
+Yellow-breasted Chat,28,1896,landbird,1,1,NA,NA,YBCH,Icteria virens
+Yellow-breasted Chat,29,1896,landbird,1,1,NA,NA,YBCH,Icteria virens
+Yellow-breasted Chat,30,1896,landbird,1,1,NA,NA,YBCH,Icteria virens
+Bobolink,13,1898,landbird,1,1,NA,Watch List - Yel-D,BOBO,Dolichonyx oryzivorus
+Bobolink,14,1898,landbird,1,1,NA,Watch List - Yel-D,BOBO,Dolichonyx oryzivorus
+Bobolink,28,1898,landbird,1,1,NA,Watch List - Yel-D,BOBO,Dolichonyx oryzivorus
+Bobolink,30,1898,landbird,1,1,NA,Watch List - Yel-D,BOBO,Dolichonyx oryzivorus
+Eastern Meadowlark,13,1899,landbird,1,1,NA,CBSD,EAME,Sturnella magna
+Eastern Meadowlark,28,1899,landbird,1,1,NA,CBSD,EAME,Sturnella magna
+Eastern Meadowlark,29,1899,landbird,1,1,NA,CBSD,EAME,Sturnella magna
+Baltimore Oriole,30,1933,landbird,1,1,NA,NA,BAOR,Icterus galbula
+Common Grackle,28,1950,landbird,1,1,NA,CBSD,COGR,Quiscalus quiscula
+Ovenbird,30,1958,landbird,1,1,NA,NA,OVEN,Seiurus aurocapilla
+Worm-eating Warbler,28,1959,landbird,1,NA,1,NA,WEWA,Helmitheros vermivorum
+Louisiana Waterthrush,28,1960,landbird,1,NA,1,NA,LOWA,Parkesia motacilla
+Golden-winged Warbler,13,1963,landbird,1,1,NA,Watch List - Red,GWWA,Vermivora chrysoptera
+Golden-winged Warbler,14,1963,landbird,1,1,NA,Watch List - Red,GWWA,Vermivora chrysoptera
+Golden-winged Warbler,28,1963,landbird,1,1,NA,Watch List - Red,GWWA,Vermivora chrysoptera
+Golden-winged Warbler,30,1963,landbird,1,NA,NA,NA,GWWA,Vermivora chrysoptera
+Blue-winged Warbler,13,1964,landbird,1,1,NA,NA,BWWA,Vermivora cyanoptera
+Blue-winged Warbler,14,1964,landbird,1,1,NA,NA,BWWA,Vermivora cyanoptera
+Blue-winged Warbler,28,1964,landbird,1,NA,1,NA,BWWA,Vermivora cyanoptera
+Blue-winged Warbler,29,1964,landbird,1,1,NA,NA,BWWA,Vermivora cyanoptera
+Blue-winged Warbler,30,1964,landbird,1,1,NA,NA,BWWA,Vermivora cyanoptera
+Black-and-white Warbler,14,1965,landbird,1,1,NA,NA,BAWW,Mniotilta varia
+Black-and-white Warbler,28,1965,landbird,1,1,NA,NA,BAWW,Mniotilta varia
+Black-and-white Warbler,30,1965,landbird,1,1,NA,NA,BAWW,Mniotilta varia
+Prothonotary Warbler,13,1966,landbird,1,1,NA,Watch List - Yel-D,PROW,Protonotaria citrea
+Prothonotary Warbler,28,1966,landbird,1,1,NA,Watch List - Yel-D,PROW,Protonotaria citrea
+Swainson's Warbler,28,1967,landbird,1,1,NA,NA,SWWA,Limnothlypis swainsonii
+Nashville Warbler,14,1974,landbird,1,1,NA,NA,NAWA,Leiothlypis ruficapilla
+Mourning Warbler,14,1980,landbird,1,1,NA,NA,MOWA,Geothlypis philadelphia
+Kentucky Warbler,28,1981,landbird,1,1,NA,Watch List - Yel-D,KEWA,Geothlypis formosa
+Kentucky Warbler,29,1981,landbird,1,1,NA,Watch List - Yel-D,KEWA,Geothlypis formosa
+Kentucky Warbler,30,1981,landbird,1,1,NA,Watch List - Yel-D,KEWA,Geothlypis formosa
+Hooded Warbler,28,1993,landbird,1,NA,1,NA,HOWA,Setophaga citrina
+Cape May Warbler,14,1996,landbird,1,1,NA,NA,CMWA,Setophaga tigrina
+Cerulean Warbler,13,1997,landbird,1,1,NA,Watch List - Yel-D,CERW,Setophaga cerulea
+Cerulean Warbler,28,1997,landbird,1,1,1,Watch List - Yel-D,CERW,Setophaga cerulea
+Cerulean Warbler,29,1997,landbird,1,1,NA,Watch List - Yel-D,CERW,Setophaga cerulea
+Cerulean Warbler,30,1997,landbird,1,1,NA,Watch List - Yel-D,CERW,Setophaga cerulea
+Northern Parula,14,1998,landbird,1,NA,1,NA,NOPA,Setophaga americana
+Bay-breasted Warbler,14,2001,landbird,1,1,NA,NA,BBWA,Setophaga castanea
+Chestnut-sided Warbler,30,2004,landbird,1,1,NA,NA,CSWA,Setophaga pensylvanica
+Black-throated Blue Warbler,14,2006,landbird,1,NA,1,NA,BTBW,Setophaga caerulescens
+Yellow-throated Warbler,28,2011,landbird,1,NA,1,NA,YTWA,Setophaga dominica
+Prairie Warbler,28,2014,landbird,1,1,NA,Watch List - Yel-D,PRAW,Setophaga discolor
+Prairie Warbler,29,2014,landbird,1,1,NA,Watch List - Yel-D,PRAW,Setophaga discolor
+Prairie Warbler,30,2014,landbird,1,1,NA,Watch List - Yel-D,PRAW,Setophaga discolor
+Canada Warbler,13,2033,landbird,1,1,NA,Watch List - Yel-D,CAWA,Cardellina canadensis
+Canada Warbler,14,2033,landbird,1,1,NA,Watch List - Yel-D,CAWA,Cardellina canadensis
+Canada Warbler,28,2033,landbird,1,1,NA,Watch List - Yel-D,CAWA,Cardellina canadensis
+Canada Warbler,30,2033,landbird,1,1,NA,Watch List - Yel-D,CAWA,Cardellina canadensis
+Summer Tanager,28,2044,landbird,1,1,NA,NA,SUTA,Piranga rubra
+Scarlet Tanager,14,2045,landbird,1,1,NA,NA,SCTA,Piranga olivacea
+Scarlet Tanager,28,2045,landbird,1,NA,1,NA,SCTA,Piranga olivacea
+Scarlet Tanager,30,2045,landbird,1,1,NA,NA,SCTA,Piranga olivacea
+Rose-breasted Grosbeak,13,2062,landbird,1,1,NA,NA,RBGR,Pheucticus ludovicianus
+Rose-breasted Grosbeak,14,2062,landbird,1,1,NA,NA,RBGR,Pheucticus ludovicianus
+Rose-breasted Grosbeak,28,2062,landbird,1,1,NA,NA,RBGR,Pheucticus ludovicianus
+Rose-breasted Grosbeak,30,2062,landbird,1,1,NA,NA,RBGR,Pheucticus ludovicianus
